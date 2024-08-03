@@ -1,10 +1,12 @@
 # Links
 https://hub.docker.com/repository/docker/christopherc0923/wine-app/general
+
 https://github.com/njitchrisc0923/CS643-Assignment-2/
 
 # EC2 Specs
 
 https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#Home:
+
 Launch 5 Instance (4 Worker & 1 Master Node)
 Initialize EC2 Name
 Amazon Linux
