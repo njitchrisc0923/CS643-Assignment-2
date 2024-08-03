@@ -8,53 +8,77 @@ https://github.com/njitchrisc0923/CS643-Assignment-2/
 https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#Home:
 
 Launch 5 Instance (4 Worker & 1 Master Node)
+
 Initialize EC2 Name
+
 Amazon Linux
+
 Amazon Linux 2023 AMI, 64-bit (x86) architecture
+
 T2.medium
+
 Add security group rule
+
 All traffic
+
 Anywhere
 
 # EC2 Setup on all Instances
 
 sudo yum update -y
+
 sudo yum install -y java-1.8.0-openjdk-devel python3
 
 wget https://archive.apache.org/dist/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz
+
 tar xvf spark-2.4.7-bin-hadoop2.7.tgz
+
 sudo mv spark-2.4.7-bin-hadoop2.7 /opt/spark
 
 nano ~/.bashrc
 
 export SPARK_HOME=/opt/spark
+
 export PATH=$PATH:/opt/spark/bin
+
 export PYSPARK_PYTHON=/usr/bin/python3
+
 export PYSPARK_DRIVER_PYTHON=/usr/bin/python3
+
 source ~/.bashrc
 
 sudo pip3 install numpy pandas
 
-Master Node Only
+## Master Node Only
+
 cd /opt/spark/conf
+
 cp spark-env.sh.template spark-env.sh
+
 nano /opt/spark/conf/spark-env.sh
 
 export SPARK_MASTER_HOST='172.31.26.109’
+
 export SPARK_WORKER_MEMORY=2g
+
 export SPARK_WORKER_CORES=2
 
 /opt/spark/sbin/start-master.sh
+
 /opt/spark/sbin/stop-master.sh
 
-Worker Node Only
+## Worker Node Only
+
 cd /opt/spark/conf
+
 cp spark-env.sh.template spark-env.sh
+
 nano /opt/spark/conf/spark-env.sh
 
 export SPARK_MASTER_HOST='172.31.22.109'
 
 /opt/spark/sbin/start-slave.sh spark://172.31.26.109:7077
+
 /opt/spark/sbin/stop-slave.sh
 
 # Running Application
